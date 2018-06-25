@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+using namespace std;
 struct racer{
     char rac_name[20];//选手姓名
     char rac_sex;//选手性别
@@ -22,6 +23,26 @@ struct rater{
 };
 int main(int argc, const char * argv[]) {
     // insert code here...
-    std::cout << "Hello, World!\n";
+    //std::cout << "Hello, World!\n";
+    int i,j,temp,a[5];
+    float ave=0;
+    cout<<"请输入5个评委的打分：\n";
+    for(i=0;i<5;i++)
+        cin>>a[i];
+    for(i=0;i<5;i++)
+    for(j=1;j<5;j++)
+    {
+        if(a[i]>a[j])
+        {
+            temp=a[i];
+            a[i]=a[j];
+            a[j]=temp;
+        }
+    }
+    for(i=1;i<4;i++)
+        ave+=a[i];
+    ave=ave/3;
+    cout<<ave<<endl;
+    system("pause");
     return 0;
 }

@@ -1,5 +1,10 @@
 # include<iostream>
 # include<iomanip>
+#include <string>
+#include <vector>
+#include <fstream>
+#include <sstream>
+
 # define N  5   //评委的人数最多为5
 # define M  50   //参赛选手的人数最多为50
 
@@ -13,9 +18,29 @@ int bh[M];
 
 int main()
 {
+    ifstream inFile("/Users/a20161104582/Desktop/match points/input.csv",ios::in);
+    string lineStr;
+    vector<vector<string>> strArrary;
+    while (getline(inFile, lineStr))
+    {
+        //打印整行字符
+        cout<< lineStr <<endl;
+        //存成二维表结构
+        stringstream ss(lineStr);
+        string str;
+        vector<string> lineArray;
+        //按都好分隔
+        while (getline(ss, str, ','))
+        {
+            lineArray.push_back(str);
+        }
+        strArrary.push_back(lineArray);
+    }
+    getchar();
+
     int i=0,n,m,r,t=0;
     float s[N],a[M],ave=0.0,sum=0.0;
-    char name[20],sex[2];
+    
     cout<<"******欢迎使用评分系统******"<<endl;
     cout<<"   请输入评委个数（>=3)：";
     cin>>n;
@@ -41,26 +66,7 @@ int main()
     Print( a, n,bh);
     return 0;
     
-    /*int num;
-    ifstream fin("/Users/a20161104582/Desktop/match points/input.csv");
-    string line;
-    while (getline(fin, line))
-    {
-        cout <<"选手信息："<<line<<endl;//整行输出
-        istringstream sin(line);
-        vector<string> fields;//声明一个字符串向量
-        string field;
-        while (getline(sin,field,','))
-        {
-            fields.push_back(field);
-        }
-        string name=Trim(fields[0]);
-        string sex=Trim(fields[0]);
-        //cout<<"处理后的字符串："<<name<<"\t"<<sex<<"\t"<<num<<endl;
     }
-    return EXIT_SUCCESS;*/
-
-}
 
 float CountAthleteScore(int , float ave, int n, float s[], int m)
 {
@@ -293,29 +299,5 @@ void Print(float a[], int m,int bh[])
         }
     }
 }
-/*string Trim(string& str)
-{
-    str.erase(0,str.find_first_not_of(" \t\r\n"));
-    str.erase(str.find_last_not_of(" \t\r\n")+1);
-    return str;
-}*/
     
 
-   /* int num;
-    ifstream fin("/Users/a20161104582/Desktop/match points/input.csv");
-    string line;
-    while (getline(fin, line))
-    {
-        cout <<"选手信息："<<line<<endl;//整行输出
-        istringstream sin(line);
-        vector<string> fields;//声明一个字符串向量
-        string field;
-        while (getline(sin,field,','))
-        {
-            fields.push_back(field);
-        }
-        string name=Trim(fields[0]);
-        string sex=Trim(fields[0]);
-        //cout<<"处理后的字符串："<<name<<"\t"<<sex<<"\t"<<num<<endl;
-    }
-    return EXIT_SUCCESS;*/
